@@ -1,0 +1,233 @@
+---
+title: "Skewed Generalised t - Distribution"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+pkgs = c("tidyverse","plotly", "shiny", "flexdashboard")
+void = lapply(pkgs, library, character.only = TRUE)
+
+sgt_skewness = function(l, p, q){
+  v = q^(-1/p) *
+    (
+      (3*l^2+1) *
+        (beta(3/p,q-2/p)/beta(1/p,q)) -
+        4*l^2 *
+        (beta(2/p,q-1/p)/beta(1/p,q))^2
+    )^(-1/2)
+  
+  skewness = 2 * q^(3/p) * l * v^3 / beta(1/p, q)^3 *
+    (8*l^2*beta(2/p,q-1/p)^3 - 
+       3*(1+3*l^2) * beta(1/p,q) * beta(2/p, q-1/p) * beta(3/p,q-2/p) + 
+       2 * (1+l^2) * beta(1/p,q)^2 * beta(4/p, q-3/p)
+       )
+  
+  return(skewness)
+}
+
+sgt_kurtosis = function(l, p, q){
+  v = q^(-1/p) *
+    (
+      (3*l^2+1) *
+        (beta(3/p,q-2/p)/beta(1/p,q)) -
+        4*l^2 *
+        (beta(2/p,q-1/p)/beta(1/p,q))^2
+    )^(-1/2)
+  
+  kurtosis = q^(4/p) * v^4 / beta(1/p, q)^4 *
+    (48*l^4*beta(2/p,q-1/p)^4 +
+       24 * l^2 * (1+3*l^2) * beta(1/p,q) * beta(2/p, q-1/p)^2 * beta(3/p,q-2/p) -
+       32 * l^2 * (1+l^2) * beta(1/p,q)^2 * beta(2/p, q-1/p) * beta(4/p,q-3/p) + 
+       (1+10*l^2+5*l^4) * beta(1/p,q)^3 * beta(5/p, q-4/p)
+    )
+  
+  return(kurtosis)
+}
+```
+
+
+
+Inputs {.sidebar}
+==========================================================
+
+```{r}
+sliderInput("lambda", label = h3("Skewness: lambda "), 
+min = -0.999, max = 0.999, value = 0.01)
+```
+
+```{r}
+sliderInput("p", label = h3("Kurtosis 1: p "), 
+min = 0.01, max = 16.99, value = 1.5)
+```
+
+```{r}
+sliderInput("q", label = h3("Kurtosis 2: q "), 
+min = 0.01, max = 99.99, value = 4)
+```
+
+
+SGT
+==================
+
+Rows {data-height=100}
+-----------------------------------------------------------------------
+
+### Skewness
+
+```{r}
+renderValueBox({
+  valueBox(value = sgt_skewness(input$lambda, input$p, input$q) %>% round(digits = 2))
+})
+```
+
+### Kurtosis
+
+```{r}
+renderValueBox({
+  valueBox(value = sgt_kurtosis(input$lambda, input$p, input$q) %>% round(digits = 2))
+})
+```
+
+### Number of finite moments
+
+```{r}
+renderValueBox({
+  valueBox(value = (input$p * input$q) %>% round())
+})
+```
+
+### Value of $\lambda$
+
+```{r}
+renderValueBox({
+  valueBox(value = input$lambda %>% round(digits = 2))
+})
+```
+
+### Value of $p$
+
+```{r}
+renderValueBox({
+  valueBox(value = input$p %>% round(digits = 2))
+})
+```
+
+### Value of $q$
+
+```{r}
+renderValueBox({
+  valueBox(value = input$q %>% round(digits = 2))
+})
+```
+
+
+Row {data-height=650}
+-----------------------------------------------------------------------
+
+### Plot
+
+```{r}
+renderPlot({
+  dd = tibble(x = seq(-3, 3, length.out = 1000)) %>% 
+    mutate(SGT = sgt::dsgt(x, mu = 0, sigma = 1, mean.cent = TRUE, var.adj = TRUE,
+                             lambda = input$lambda, p = input$p, q = input$q)) %>% 
+    mutate(Gaussian = stats::dnorm(x)) %>% 
+    pivot_longer(-x, names_to = "Distribution")
+    
+  
+  dd %>% 
+    ggplot(aes(x = x, y = value, color = Distribution)) + 
+    geom_line() + 
+    ggtitle("Density of SGT Distribution compared to Gaussian")
+})  
+```
+
+
+### Density
+
+The SGT family of densities whose mean is equal to $0$ and whose variance is equal to $1$ is parametrised as
+
+$$
+f_{SGT}\left(x; \lambda, p, q \right) = \frac{p}{2 \cdot v \cdot q^{\frac{1}{p}} \cdot B \left( \frac{1}{p}, q \right) \cdot \left( \frac{|x + m|^p}{q \cdot v^p \cdot \left( \lambda \cdot sign(x + m) + 1 \right)^p} + 1 \right)^{\frac{1}{p}+q}}
+$$
+
+where
+
+$$
+m = 
+\frac{2 v \lambda q^{\frac{1}{p}} B \left( \frac{2}{p}, q - \frac{1}{p} \right)}{B \left( \frac{1}{p}, q \right)}
+$$
+
+where 
+
+$$
+v = q^{-\frac{1}{p}}
+\left[
+\left(
+3\lambda^2 + 1
+\right)
+\left(
+\frac{
+B \left( \frac{3}{p}, q - \frac{2}{p} \right)
+}{
+B \left( \frac{1}{p}, q \right)
+}
+\right)
+-
+4 \lambda^2
+\left(
+\frac{
+B \left( \frac{2}{p}, q - \frac{1}{p} \right)
+}{
+B \left( \frac{1}{p}, q \right)
+}
+\right)
+\right]^{-\frac{1}{2}}
+$$
+
+and $B \left( \cdot, \cdot \right)$ is the Beta function.
+
+For $p = 2$, we obtain the **skewed t distribution**.
+
+For $q = \infty$, we obtain the **skewed generalised error distribution**.
+
+**References**
+
+* [Panayiotis Theodossiou. Financial data and the skewed generalized t distribution. Management Science, 44(12):1650–1661, 1998](https://www.jstor.org/stable/2634700)
+* [SGT package vignette](https://cran.r-project.org/web/packages/sgt/vignettes/sgt.pdf)
+
+
+Row {data-height=250}
+-----------------------------------------------------------------------
+
+### Skewness and Kurtosis
+
+The skewness is equal to 
+
+$$
+\frac{2 \cdot q^{\frac{3}{p}} \cdot \lambda \cdot v^3}{B\left(\frac{1}{p}, q\right)^3} \cdot
+  \left(
+    8 \cdot \lambda^2 \cdot B\left(\frac{2}{p}, q-\frac{1}{p}\right)^3 - 
+    3 \cdot \left(1 + 3 \cdot \lambda^2\right) \cdot B\left(\frac{1}{p}, q\right) \cdot B\left(\frac{2}{p}, q-\frac{1}{p}\right) \cdot B\left(\frac{3}{p}, q-\frac{2}{p}\right) + 
+    2 \cdot \left(1 + \lambda^2\right) \cdot B\left(\frac{1}{p}, q\right)^2 \cdot B\left(\frac{4}{p}, q-\frac{3}{p}\right)
+  \right)
+$$
+
+and the kurtosis is equal to
+
+
+$$
+\frac{q^{\frac{4}{p}} \cdot v^4}{B\left(\frac{1}{p}, q\right)^4} \cdot
+  \left( 
+    48 \cdot \lambda^4 \cdot B\left(\frac{2}{p}, q-\frac{1}{p} \right)^4 +
+    24 \cdot \lambda^2 \cdot \left(1+3 \cdot \lambda^2\right) \cdot B\left(\frac{1}{p}, q\right) \cdot B\left(\frac{2}{p}, q-\frac{1}{p} \right)^2 \cdot B\left(\frac{3}{p}, q-\frac{2}{p} \right) -
+    32 \cdot \lambda^2 \cdot \left(1+\lambda^2\right) \cdot B\left(\frac{1}{p}, q\right)^2 \cdot B\left(\frac{2}{p}, q-\frac{1}{p} \right) \cdot B\left(\frac{4}{p},q-\frac{3}{p} \right) + 
+    \left(1+10 \cdot \lambda^2+5 \cdot \lambda^4\right) \cdot B\left(\frac{1}{p}, q \right)^3 \cdot B\left(\frac{5}{p}, q-\frac{4}{p}\right)
+  \right)
+$$
+
+
+

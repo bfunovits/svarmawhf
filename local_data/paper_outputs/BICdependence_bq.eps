@@ -1,0 +1,1969 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%DocumentNeededResources: font Helvetica
+%%+ font Helvetica-Bold
+%%+ font Helvetica-Oblique
+%%+ font Helvetica-BoldOblique
+%%+ font Symbol
+%%Title: R Graphics Output
+%%Creator: R Software
+%%Pages: (atend)
+%%BoundingBox: 0 0 504 360
+%%EndComments
+%%BeginProlog
+/bp  { gs sRGB gs } def
+% begin .ps.prolog
+/gs  { gsave } bind def
+/gr  { grestore } bind def
+/ep  { showpage gr gr } bind def
+/m   { moveto } bind def
+/l  { rlineto } bind def
+/np  { newpath } bind def
+/cp  { closepath } bind def
+/f   { fill } bind def
+/o   { stroke } bind def
+/c   { newpath 0 360 arc } bind def
+/r   { 4 2 roll moveto 1 copy 3 -1 roll exch 0 exch rlineto 0 rlineto -1 mul 0 exch rlineto closepath } bind def
+/p1  { stroke } bind def
+/p2  { gsave bg fill grestore newpath } bind def
+/p3  { gsave bg fill grestore stroke } bind def
+/p6  { gsave bg eofill grestore newpath } bind def
+/p7  { gsave bg eofill grestore stroke } bind def
+/t   { 5 -2 roll moveto gsave rotate
+       1 index stringwidth pop
+       mul neg 0 rmoveto show grestore } bind def
+/ta  { 4 -2 roll moveto gsave rotate show } bind def
+/tb  { 2 -1 roll 0 rmoveto show } bind def
+/cl  { grestore gsave newpath 3 index 3 index moveto 1 index
+       4 -1 roll lineto  exch 1 index lineto lineto
+       closepath clip newpath } bind def
+/rgb { setrgbcolor } bind def
+/s   { scalefont setfont } bind def
+% end   .ps.prolog
+/sRGB { [ /CIEBasedABC
+          << /DecodeLMN
+               [ { dup 0.03928 le
+                        {12.92321 div}
+                        {0.055 add 1.055 div 2.4 exp }
+                     ifelse
+                 } bind dup dup
+               ]
+             /MatrixLMN [0.412457 0.212673 0.019334
+                         0.357576 0.715152 0.119192
+                         0.180437 0.072175 0.950301]
+             /WhitePoint [0.9505 1.0 1.0890]
+           >>
+         ] setcolorspace } bind def
+/srgb { setcolor } bind def
+%%IncludeResource: font Helvetica
+/Helvetica findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  /Encoding ISOLatin1Encoding def
+  currentdict
+  end
+/Font1 exch definefont pop
+%%IncludeResource: font Helvetica-Bold
+/Helvetica-Bold findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  /Encoding ISOLatin1Encoding def
+  currentdict
+  end
+/Font2 exch definefont pop
+%%IncludeResource: font Helvetica-Oblique
+/Helvetica-Oblique findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  /Encoding ISOLatin1Encoding def
+  currentdict
+  end
+/Font3 exch definefont pop
+%%IncludeResource: font Helvetica-BoldOblique
+/Helvetica-BoldOblique findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  /Encoding ISOLatin1Encoding def
+  currentdict
+  end
+/Font4 exch definefont pop
+%%IncludeResource: font Symbol
+/Symbol findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  currentdict
+  end
+/Font5 exch definefont pop
+%%EndProlog
+%%Page: 1 1
+bp
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+/bg { 1 1 1 srgb } def
+1 1 1 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+0.00 0.00 504.00 360.00 r p3
+0.00 0.00 504.00 360.00 cl
+35.98 251.82 143.20 319.64 cl
+/bg { 1 1 1 srgb } def
+35.98 251.82 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+35.98 262.20 m
+107.22 0 l
+o
+np
+35.98 279.05 m
+107.22 0 l
+o
+np
+35.98 295.90 m
+107.22 0 l
+o
+np
+35.98 312.75 m
+107.22 0 l
+o
+np
+57.10 251.82 m
+0 67.82 l
+o
+np
+89.59 251.82 m
+0 67.82 l
+o
+np
+122.08 251.82 m
+0 67.82 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+35.98 253.77 m
+107.22 0 l
+o
+np
+35.98 270.62 m
+107.22 0 l
+o
+np
+35.98 287.47 m
+107.22 0 l
+o
+np
+35.98 304.33 m
+107.22 0 l
+o
+np
+40.85 251.82 m
+0 67.82 l
+o
+np
+73.34 251.82 m
+0 67.82 l
+o
+np
+105.84 251.82 m
+0 67.82 l
+o
+np
+138.33 251.82 m
+0 67.82 l
+o
+0.2000 0.2000 0.2000 srgb
+1 setlinecap
+35.98 251.82 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+35.98 178.51 143.20 246.34 cl
+/bg { 1 1 1 srgb } def
+35.98 178.51 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+35.98 188.89 m
+107.22 0 l
+o
+np
+35.98 205.75 m
+107.22 0 l
+o
+np
+35.98 222.60 m
+107.22 0 l
+o
+np
+35.98 239.45 m
+107.22 0 l
+o
+np
+57.10 178.51 m
+0 67.83 l
+o
+np
+89.59 178.51 m
+0 67.83 l
+o
+np
+122.08 178.51 m
+0 67.83 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+35.98 180.47 m
+107.22 0 l
+o
+np
+35.98 197.32 m
+107.22 0 l
+o
+np
+35.98 214.17 m
+107.22 0 l
+o
+np
+35.98 231.02 m
+107.22 0 l
+o
+np
+40.85 178.51 m
+0 67.83 l
+o
+np
+73.34 178.51 m
+0 67.83 l
+o
+np
+105.84 178.51 m
+0 67.83 l
+o
+np
+138.33 178.51 m
+0 67.83 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+40.85 181.60 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+35.98 178.51 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+35.98 105.21 143.20 173.03 cl
+/bg { 1 1 1 srgb } def
+35.98 105.21 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+35.98 115.59 m
+107.22 0 l
+o
+np
+35.98 132.44 m
+107.22 0 l
+o
+np
+35.98 149.30 m
+107.22 0 l
+o
+np
+35.98 166.15 m
+107.22 0 l
+o
+np
+57.10 105.21 m
+0 67.82 l
+o
+np
+89.59 105.21 m
+0 67.82 l
+o
+np
+122.08 105.21 m
+0 67.82 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+35.98 107.17 m
+107.22 0 l
+o
+np
+35.98 124.02 m
+107.22 0 l
+o
+np
+35.98 140.87 m
+107.22 0 l
+o
+np
+35.98 157.72 m
+107.22 0 l
+o
+np
+40.85 105.21 m
+0 67.82 l
+o
+np
+73.34 105.21 m
+0 67.82 l
+o
+np
+105.84 105.21 m
+0 67.82 l
+o
+np
+138.33 105.21 m
+0 67.82 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+40.85 112.07 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+35.98 105.21 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+35.98 31.91 143.20 99.73 cl
+/bg { 1 1 1 srgb } def
+35.98 31.91 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+35.98 42.29 m
+107.22 0 l
+o
+np
+35.98 59.14 m
+107.22 0 l
+o
+np
+35.98 75.99 m
+107.22 0 l
+o
+np
+35.98 92.85 m
+107.22 0 l
+o
+np
+57.10 31.91 m
+0 67.82 l
+o
+np
+89.59 31.91 m
+0 67.82 l
+o
+np
+122.08 31.91 m
+0 67.82 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+35.98 33.87 m
+107.22 0 l
+o
+np
+35.98 50.72 m
+107.22 0 l
+o
+np
+35.98 67.57 m
+107.22 0 l
+o
+np
+35.98 84.42 m
+107.22 0 l
+o
+np
+40.85 31.91 m
+0 67.82 l
+o
+np
+73.34 31.91 m
+0 67.82 l
+o
+np
+105.84 31.91 m
+0 67.82 l
+o
+np
+138.33 31.91 m
+0 67.82 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+40.85 42.91 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+35.98 31.91 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+148.68 251.82 255.91 319.64 cl
+/bg { 1 1 1 srgb } def
+148.68 251.82 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+148.68 262.20 m
+107.23 0 l
+o
+np
+148.68 279.05 m
+107.23 0 l
+o
+np
+148.68 295.90 m
+107.23 0 l
+o
+np
+148.68 312.75 m
+107.23 0 l
+o
+np
+169.80 251.82 m
+0 67.82 l
+o
+np
+202.29 251.82 m
+0 67.82 l
+o
+np
+234.79 251.82 m
+0 67.82 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+148.68 253.77 m
+107.23 0 l
+o
+np
+148.68 270.62 m
+107.23 0 l
+o
+np
+148.68 287.47 m
+107.23 0 l
+o
+np
+148.68 304.33 m
+107.23 0 l
+o
+np
+153.56 251.82 m
+0 67.82 l
+o
+np
+186.05 251.82 m
+0 67.82 l
+o
+np
+218.54 251.82 m
+0 67.82 l
+o
+np
+251.03 251.82 m
+0 67.82 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+153.56 315.18 1.95 c p3
+169.80 315.28 1.95 c p3
+186.05 316.56 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+148.68 251.82 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+148.68 178.51 255.91 246.34 cl
+/bg { 1 1 1 srgb } def
+148.68 178.51 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+148.68 188.89 m
+107.23 0 l
+o
+np
+148.68 205.75 m
+107.23 0 l
+o
+np
+148.68 222.60 m
+107.23 0 l
+o
+np
+148.68 239.45 m
+107.23 0 l
+o
+np
+169.80 178.51 m
+0 67.83 l
+o
+np
+202.29 178.51 m
+0 67.83 l
+o
+np
+234.79 178.51 m
+0 67.83 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+148.68 180.47 m
+107.23 0 l
+o
+np
+148.68 197.32 m
+107.23 0 l
+o
+np
+148.68 214.17 m
+107.23 0 l
+o
+np
+148.68 231.02 m
+107.23 0 l
+o
+np
+153.56 178.51 m
+0 67.83 l
+o
+np
+186.05 178.51 m
+0 67.83 l
+o
+np
+218.54 178.51 m
+0 67.83 l
+o
+np
+251.03 178.51 m
+0 67.83 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+153.56 185.43 1.95 c p3
+169.80 186.14 1.95 c p3
+186.05 185.16 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+148.68 178.51 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+148.68 105.21 255.91 173.03 cl
+/bg { 1 1 1 srgb } def
+148.68 105.21 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+148.68 115.59 m
+107.23 0 l
+o
+np
+148.68 132.44 m
+107.23 0 l
+o
+np
+148.68 149.30 m
+107.23 0 l
+o
+np
+148.68 166.15 m
+107.23 0 l
+o
+np
+169.80 105.21 m
+0 67.82 l
+o
+np
+202.29 105.21 m
+0 67.82 l
+o
+np
+234.79 105.21 m
+0 67.82 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+148.68 107.17 m
+107.23 0 l
+o
+np
+148.68 124.02 m
+107.23 0 l
+o
+np
+148.68 140.87 m
+107.23 0 l
+o
+np
+148.68 157.72 m
+107.23 0 l
+o
+np
+153.56 105.21 m
+0 67.82 l
+o
+np
+186.05 105.21 m
+0 67.82 l
+o
+np
+218.54 105.21 m
+0 67.82 l
+o
+np
+251.03 105.21 m
+0 67.82 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+153.56 115.99 1.95 c p3
+169.80 117.77 1.95 c p3
+186.05 117.32 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+148.68 105.21 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+148.68 31.91 255.91 99.73 cl
+/bg { 1 1 1 srgb } def
+148.68 31.91 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+148.68 42.29 m
+107.23 0 l
+o
+np
+148.68 59.14 m
+107.23 0 l
+o
+np
+148.68 75.99 m
+107.23 0 l
+o
+np
+148.68 92.85 m
+107.23 0 l
+o
+np
+169.80 31.91 m
+0 67.82 l
+o
+np
+202.29 31.91 m
+0 67.82 l
+o
+np
+234.79 31.91 m
+0 67.82 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+148.68 33.87 m
+107.23 0 l
+o
+np
+148.68 50.72 m
+107.23 0 l
+o
+np
+148.68 67.57 m
+107.23 0 l
+o
+np
+148.68 84.42 m
+107.23 0 l
+o
+np
+153.56 31.91 m
+0 67.82 l
+o
+np
+186.05 31.91 m
+0 67.82 l
+o
+np
+218.54 31.91 m
+0 67.82 l
+o
+np
+251.03 31.91 m
+0 67.82 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+153.56 48.33 1.95 c p3
+169.80 49.23 1.95 c p3
+186.05 48.64 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+148.68 31.91 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+261.38 251.82 368.61 319.64 cl
+/bg { 1 1 1 srgb } def
+261.38 251.82 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+261.38 262.20 m
+107.23 0 l
+o
+np
+261.38 279.05 m
+107.23 0 l
+o
+np
+261.38 295.90 m
+107.23 0 l
+o
+np
+261.38 312.75 m
+107.23 0 l
+o
+np
+282.50 251.82 m
+0 67.82 l
+o
+np
+315.00 251.82 m
+0 67.82 l
+o
+np
+347.49 251.82 m
+0 67.82 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+261.38 253.77 m
+107.23 0 l
+o
+np
+261.38 270.62 m
+107.23 0 l
+o
+np
+261.38 287.47 m
+107.23 0 l
+o
+np
+261.38 304.33 m
+107.23 0 l
+o
+np
+266.26 251.82 m
+0 67.82 l
+o
+np
+298.75 251.82 m
+0 67.82 l
+o
+np
+331.24 251.82 m
+0 67.82 l
+o
+np
+363.73 251.82 m
+0 67.82 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+266.26 294.46 1.95 c p3
+282.50 293.79 1.95 c p3
+298.75 295.10 1.95 c p3
+315.00 296.06 1.95 c p3
+331.24 295.21 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+261.38 251.82 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+261.38 178.51 368.61 246.34 cl
+/bg { 1 1 1 srgb } def
+261.38 178.51 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+261.38 188.89 m
+107.23 0 l
+o
+np
+261.38 205.75 m
+107.23 0 l
+o
+np
+261.38 222.60 m
+107.23 0 l
+o
+np
+261.38 239.45 m
+107.23 0 l
+o
+np
+282.50 178.51 m
+0 67.83 l
+o
+np
+315.00 178.51 m
+0 67.83 l
+o
+np
+347.49 178.51 m
+0 67.83 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+261.38 180.47 m
+107.23 0 l
+o
+np
+261.38 197.32 m
+107.23 0 l
+o
+np
+261.38 214.17 m
+107.23 0 l
+o
+np
+261.38 231.02 m
+107.23 0 l
+o
+np
+266.26 178.51 m
+0 67.83 l
+o
+np
+298.75 178.51 m
+0 67.83 l
+o
+np
+331.24 178.51 m
+0 67.83 l
+o
+np
+363.73 178.51 m
+0 67.83 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+266.26 189.89 1.95 c p3
+282.50 190.52 1.95 c p3
+298.75 190.31 1.95 c p3
+315.00 189.72 1.95 c p3
+331.24 189.58 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+261.38 178.51 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+261.38 105.21 368.61 173.03 cl
+/bg { 1 1 1 srgb } def
+261.38 105.21 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+261.38 115.59 m
+107.23 0 l
+o
+np
+261.38 132.44 m
+107.23 0 l
+o
+np
+261.38 149.30 m
+107.23 0 l
+o
+np
+261.38 166.15 m
+107.23 0 l
+o
+np
+282.50 105.21 m
+0 67.82 l
+o
+np
+315.00 105.21 m
+0 67.82 l
+o
+np
+347.49 105.21 m
+0 67.82 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+261.38 107.17 m
+107.23 0 l
+o
+np
+261.38 124.02 m
+107.23 0 l
+o
+np
+261.38 140.87 m
+107.23 0 l
+o
+np
+261.38 157.72 m
+107.23 0 l
+o
+np
+266.26 105.21 m
+0 67.82 l
+o
+np
+298.75 105.21 m
+0 67.82 l
+o
+np
+331.24 105.21 m
+0 67.82 l
+o
+np
+363.73 105.21 m
+0 67.82 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+266.26 121.98 1.95 c p3
+282.50 121.24 1.95 c p3
+298.75 123.37 1.95 c p3
+315.00 122.52 1.95 c p3
+331.24 123.66 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+261.38 105.21 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+261.38 31.91 368.61 99.73 cl
+/bg { 1 1 1 srgb } def
+261.38 31.91 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+261.38 42.29 m
+107.23 0 l
+o
+np
+261.38 59.14 m
+107.23 0 l
+o
+np
+261.38 75.99 m
+107.23 0 l
+o
+np
+261.38 92.85 m
+107.23 0 l
+o
+np
+282.50 31.91 m
+0 67.82 l
+o
+np
+315.00 31.91 m
+0 67.82 l
+o
+np
+347.49 31.91 m
+0 67.82 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+261.38 33.87 m
+107.23 0 l
+o
+np
+261.38 50.72 m
+107.23 0 l
+o
+np
+261.38 67.57 m
+107.23 0 l
+o
+np
+261.38 84.42 m
+107.23 0 l
+o
+np
+266.26 31.91 m
+0 67.82 l
+o
+np
+298.75 31.91 m
+0 67.82 l
+o
+np
+331.24 31.91 m
+0 67.82 l
+o
+np
+363.73 31.91 m
+0 67.82 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+266.26 55.42 1.95 c p3
+282.50 54.17 1.95 c p3
+298.75 54.91 1.95 c p3
+315.00 58.74 1.95 c p3
+331.24 56.33 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+261.38 31.91 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+374.09 251.82 481.31 319.64 cl
+/bg { 1 1 1 srgb } def
+374.09 251.82 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+374.09 262.20 m
+107.22 0 l
+o
+np
+374.09 279.05 m
+107.22 0 l
+o
+np
+374.09 295.90 m
+107.22 0 l
+o
+np
+374.09 312.75 m
+107.22 0 l
+o
+np
+395.21 251.82 m
+0 67.82 l
+o
+np
+427.70 251.82 m
+0 67.82 l
+o
+np
+460.19 251.82 m
+0 67.82 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+374.09 253.77 m
+107.22 0 l
+o
+np
+374.09 270.62 m
+107.22 0 l
+o
+np
+374.09 287.47 m
+107.22 0 l
+o
+np
+374.09 304.33 m
+107.22 0 l
+o
+np
+378.96 251.82 m
+0 67.82 l
+o
+np
+411.45 251.82 m
+0 67.82 l
+o
+np
+443.95 251.82 m
+0 67.82 l
+o
+np
+476.44 251.82 m
+0 67.82 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+378.96 284.29 1.95 c p3
+395.21 284.90 1.95 c p3
+411.45 285.03 1.95 c p3
+427.70 285.58 1.95 c p3
+443.95 284.01 1.95 c p3
+460.19 290.28 1.95 c p3
+476.44 285.74 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+374.09 251.82 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+374.09 178.51 481.31 246.34 cl
+/bg { 1 1 1 srgb } def
+374.09 178.51 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+374.09 188.89 m
+107.22 0 l
+o
+np
+374.09 205.75 m
+107.22 0 l
+o
+np
+374.09 222.60 m
+107.22 0 l
+o
+np
+374.09 239.45 m
+107.22 0 l
+o
+np
+395.21 178.51 m
+0 67.83 l
+o
+np
+427.70 178.51 m
+0 67.83 l
+o
+np
+460.19 178.51 m
+0 67.83 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+374.09 180.47 m
+107.22 0 l
+o
+np
+374.09 197.32 m
+107.22 0 l
+o
+np
+374.09 214.17 m
+107.22 0 l
+o
+np
+374.09 231.02 m
+107.22 0 l
+o
+np
+378.96 178.51 m
+0 67.83 l
+o
+np
+411.45 178.51 m
+0 67.83 l
+o
+np
+443.95 178.51 m
+0 67.83 l
+o
+np
+476.44 178.51 m
+0 67.83 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+395.21 194.45 1.95 c p3
+411.45 194.53 1.95 c p3
+427.70 195.79 1.95 c p3
+443.95 192.65 1.95 c p3
+460.19 194.88 1.95 c p3
+476.44 193.93 1.95 c p3
+378.96 196.22 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+374.09 178.51 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+374.09 105.21 481.31 173.03 cl
+/bg { 1 1 1 srgb } def
+374.09 105.21 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+374.09 115.59 m
+107.22 0 l
+o
+np
+374.09 132.44 m
+107.22 0 l
+o
+np
+374.09 149.30 m
+107.22 0 l
+o
+np
+374.09 166.15 m
+107.22 0 l
+o
+np
+395.21 105.21 m
+0 67.82 l
+o
+np
+427.70 105.21 m
+0 67.82 l
+o
+np
+460.19 105.21 m
+0 67.82 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+374.09 107.17 m
+107.22 0 l
+o
+np
+374.09 124.02 m
+107.22 0 l
+o
+np
+374.09 140.87 m
+107.22 0 l
+o
+np
+374.09 157.72 m
+107.22 0 l
+o
+np
+378.96 105.21 m
+0 67.82 l
+o
+np
+411.45 105.21 m
+0 67.82 l
+o
+np
+443.95 105.21 m
+0 67.82 l
+o
+np
+476.44 105.21 m
+0 67.82 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+378.96 126.62 1.95 c p3
+395.21 128.57 1.95 c p3
+411.45 128.14 1.95 c p3
+427.70 127.88 1.95 c p3
+443.95 127.66 1.95 c p3
+460.19 128.24 1.95 c p3
+476.44 130.49 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+374.09 105.21 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+374.09 31.91 481.31 99.73 cl
+/bg { 1 1 1 srgb } def
+374.09 31.91 107.22 67.82 r p2
+0.9216 0.9216 0.9216 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+374.09 42.29 m
+107.22 0 l
+o
+np
+374.09 59.14 m
+107.22 0 l
+o
+np
+374.09 75.99 m
+107.22 0 l
+o
+np
+374.09 92.85 m
+107.22 0 l
+o
+np
+395.21 31.91 m
+0 67.82 l
+o
+np
+427.70 31.91 m
+0 67.82 l
+o
+np
+460.19 31.91 m
+0 67.82 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+374.09 33.87 m
+107.22 0 l
+o
+np
+374.09 50.72 m
+107.22 0 l
+o
+np
+374.09 67.57 m
+107.22 0 l
+o
+np
+374.09 84.42 m
+107.22 0 l
+o
+np
+378.96 31.91 m
+0 67.82 l
+o
+np
+411.45 31.91 m
+0 67.82 l
+o
+np
+443.95 31.91 m
+0 67.82 l
+o
+np
+476.44 31.91 m
+0 67.82 l
+o
+/bg { 0 0 0 srgb } def
+0 0 0 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+378.96 60.21 1.95 c p3
+395.21 59.11 1.95 c p3
+411.45 59.79 1.95 c p3
+427.70 61.85 1.95 c p3
+443.95 62.11 1.95 c p3
+460.19 61.75 1.95 c p3
+476.44 62.43 1.95 c p3
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+374.09 31.91 107.22 67.82 r p1
+0.00 0.00 504.00 360.00 cl
+35.98 319.64 143.20 336.85 cl
+35.98 319.64 143.20 336.85 cl
+/bg { 0.8510 0.8510 0.8510 srgb } def
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+35.98 319.64 107.22 17.21 r p3
+/Font1 findfont 9 s
+0.1020 0.1020 0.1020 srgb
+89.59 325.01 (q: 0) .5 0 t
+35.98 319.64 143.20 336.85 cl
+35.98 319.64 143.20 336.85 cl
+0.00 0.00 504.00 360.00 cl
+148.68 319.64 255.91 336.85 cl
+148.68 319.64 255.91 336.85 cl
+/bg { 0.8510 0.8510 0.8510 srgb } def
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+148.68 319.64 107.22 17.21 r p3
+/Font1 findfont 9 s
+0.1020 0.1020 0.1020 srgb
+202.29 325.01 (q: 1) .5 0 t
+148.68 319.64 255.91 336.85 cl
+148.68 319.64 255.91 336.85 cl
+0.00 0.00 504.00 360.00 cl
+261.38 319.64 368.61 336.85 cl
+261.38 319.64 368.61 336.85 cl
+/bg { 0.8510 0.8510 0.8510 srgb } def
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+261.38 319.64 107.22 17.21 r p3
+/Font1 findfont 9 s
+0.1020 0.1020 0.1020 srgb
+315.00 325.01 (q: 2) .5 0 t
+261.38 319.64 368.61 336.85 cl
+261.38 319.64 368.61 336.85 cl
+0.00 0.00 504.00 360.00 cl
+374.09 319.64 481.31 336.85 cl
+374.09 319.64 481.31 336.85 cl
+/bg { 0.8510 0.8510 0.8510 srgb } def
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+374.09 319.64 107.22 17.21 r p3
+/Font1 findfont 9 s
+0.1020 0.1020 0.1020 srgb
+427.70 325.01 (q: 3) .5 0 t
+374.09 319.64 481.31 336.85 cl
+374.09 319.64 481.31 336.85 cl
+0.00 0.00 504.00 360.00 cl
+481.31 251.82 498.52 319.64 cl
+481.31 251.82 498.52 319.64 cl
+/bg { 0.8510 0.8510 0.8510 srgb } def
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+481.31 251.82 17.21 67.82 r p3
+/Font1 findfont 9 s
+0.1020 0.1020 0.1020 srgb
+486.68 285.73 (p: 0) .5 -90.00 t
+481.31 251.82 498.52 319.64 cl
+481.31 251.82 498.52 319.64 cl
+0.00 0.00 504.00 360.00 cl
+481.31 178.51 498.52 246.34 cl
+481.31 178.51 498.52 246.34 cl
+/bg { 0.8510 0.8510 0.8510 srgb } def
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+481.31 178.51 17.21 67.82 r p3
+/Font1 findfont 9 s
+0.1020 0.1020 0.1020 srgb
+486.68 212.43 (p: 1) .5 -90.00 t
+481.31 178.51 498.52 246.34 cl
+481.31 178.51 498.52 246.34 cl
+0.00 0.00 504.00 360.00 cl
+481.31 105.21 498.52 173.03 cl
+481.31 105.21 498.52 173.03 cl
+/bg { 0.8510 0.8510 0.8510 srgb } def
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+481.31 105.21 17.21 67.82 r p3
+/Font1 findfont 9 s
+0.1020 0.1020 0.1020 srgb
+486.68 139.12 (p: 2) .5 -90.00 t
+481.31 105.21 498.52 173.03 cl
+481.31 105.21 498.52 173.03 cl
+0.00 0.00 504.00 360.00 cl
+481.31 31.91 498.52 99.73 cl
+481.31 31.91 498.52 99.73 cl
+/bg { 0.8510 0.8510 0.8510 srgb } def
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+481.31 31.91 17.21 67.82 r p3
+/Font1 findfont 9 s
+0.1020 0.1020 0.1020 srgb
+486.68 65.82 (p: 3) .5 -90.00 t
+481.31 31.91 498.52 99.73 cl
+481.31 31.91 498.52 99.73 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+40.85 29.17 m
+0 2.74 l
+o
+np
+73.34 29.17 m
+0 2.74 l
+o
+np
+105.84 29.17 m
+0 2.74 l
+o
+np
+138.33 29.17 m
+0 2.74 l
+o
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+/Font1 findfont 9 s
+0.3020 0.3020 0.3020 srgb
+40.85 20.52 (0) .5 0 t
+73.34 20.52 (2) .5 0 t
+105.84 20.52 (4) .5 0 t
+138.33 20.52 (6) .5 0 t
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+153.56 29.17 m
+0 2.74 l
+o
+np
+186.05 29.17 m
+0 2.74 l
+o
+np
+218.54 29.17 m
+0 2.74 l
+o
+np
+251.03 29.17 m
+0 2.74 l
+o
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+/Font1 findfont 9 s
+0.3020 0.3020 0.3020 srgb
+153.56 20.52 (0) .5 0 t
+186.05 20.52 (2) .5 0 t
+218.54 20.52 (4) .5 0 t
+251.03 20.52 (6) .5 0 t
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+266.26 29.17 m
+0 2.74 l
+o
+np
+298.75 29.17 m
+0 2.74 l
+o
+np
+331.24 29.17 m
+0 2.74 l
+o
+np
+363.73 29.17 m
+0 2.74 l
+o
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+/Font1 findfont 9 s
+0.3020 0.3020 0.3020 srgb
+266.26 20.52 (0) .5 0 t
+298.75 20.52 (2) .5 0 t
+331.24 20.52 (4) .5 0 t
+363.73 20.52 (6) .5 0 t
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+378.96 29.17 m
+0 2.74 l
+o
+np
+411.45 29.17 m
+0 2.74 l
+o
+np
+443.95 29.17 m
+0 2.74 l
+o
+np
+476.44 29.17 m
+0 2.74 l
+o
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+/Font1 findfont 9 s
+0.3020 0.3020 0.3020 srgb
+378.96 20.52 (0) .5 0 t
+411.45 20.52 (2) .5 0 t
+443.95 20.52 (4) .5 0 t
+476.44 20.52 (6) .5 0 t
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+/Font1 findfont 9 s
+0.3020 0.3020 0.3020 srgb
+31.05 250.54 (1.8) 1 0 t
+31.05 267.39 (2.1) 1 0 t
+31.05 284.24 (2.4) 1 0 t
+31.05 301.09 (2.7) 1 0 t
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+33.24 253.77 m
+2.74 0 l
+o
+np
+33.24 270.62 m
+2.74 0 l
+o
+np
+33.24 287.47 m
+2.74 0 l
+o
+np
+33.24 304.33 m
+2.74 0 l
+o
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+/Font1 findfont 9 s
+0.3020 0.3020 0.3020 srgb
+31.05 177.24 (1.8) 1 0 t
+31.05 194.09 (2.1) 1 0 t
+31.05 210.94 (2.4) 1 0 t
+31.05 227.79 (2.7) 1 0 t
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+33.24 180.47 m
+2.74 0 l
+o
+np
+33.24 197.32 m
+2.74 0 l
+o
+np
+33.24 214.17 m
+2.74 0 l
+o
+np
+33.24 231.02 m
+2.74 0 l
+o
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+/Font1 findfont 9 s
+0.3020 0.3020 0.3020 srgb
+31.05 103.94 (1.8) 1 0 t
+31.05 120.79 (2.1) 1 0 t
+31.05 137.64 (2.4) 1 0 t
+31.05 154.49 (2.7) 1 0 t
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+33.24 107.17 m
+2.74 0 l
+o
+np
+33.24 124.02 m
+2.74 0 l
+o
+np
+33.24 140.87 m
+2.74 0 l
+o
+np
+33.24 157.72 m
+2.74 0 l
+o
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+/Font1 findfont 9 s
+0.3020 0.3020 0.3020 srgb
+31.05 30.63 (1.8) 1 0 t
+31.05 47.49 (2.1) 1 0 t
+31.05 64.34 (2.4) 1 0 t
+31.05 81.19 (2.7) 1 0 t
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+33.24 33.87 m
+2.74 0 l
+o
+np
+33.24 50.72 m
+2.74 0 l
+o
+np
+33.24 67.57 m
+2.74 0 l
+o
+np
+33.24 84.42 m
+2.74 0 l
+o
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+/Font1 findfont 11 s
+0 0 0 srgb
+258.65 7.90 (Number of MA Roots Inside the Unit Circle) .5 0 t
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+/Font1 findfont 11 s
+0 0 0 srgb
+13.38 151.01 (BIC V) 90 ta
+-0.770 (alue) tb gr
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+/Font1 findfont 13 s
+0 0 0 srgb
+35.98 345.19 (Dependence of BIC V) 0 ta
+-0.910 (alue w.r) tb
+-0.650 (.t. Integer-V) tb
+-0.910 (alued P) tb
+-0.520 (ar) tb
+-0.130 (ameters) tb gr
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+0.00 0.00 504.00 360.00 cl
+ep
+%%Trailer
+%%Pages: 1
+%%EOF

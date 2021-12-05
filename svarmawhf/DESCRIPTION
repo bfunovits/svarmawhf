@@ -1,0 +1,35 @@
+Package: svarmawhf
+Title: Estimation of possibly non-invertible SVARMA models
+Version: 0.1.0
+Authors@R:
+    c(person(given = "Bernd", family = "Funovits",
+             role = c("aut", "cre"), email = "bernd.funovits@gmail.com"),
+      person(given = "Wolfgang", family = "Scherrer",
+             role = c("aut"), email = "wolfgang.scherrer@tuwien.ac.at"))
+Description: This package provides functions for estimating possibly non-invertible structural Vector Autoregressive Moving Average (VARMA) models in the normalised canonical WHF parametrisation.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+LinkingTo: 
+    Rcpp,
+    RcppArmadillo
+Imports: 
+    dplyr,
+    fitdistrplus,
+    LaplacesDemon,
+    magrittr,
+    purrr,
+    Rcpp,
+    rmutil,
+    scales,
+    shiny,
+    sgt,
+    stats,
+    steadyICA,
+    tibble,
+    tidyselect
+Suggests: 
+    rmarkdown,
+    knitr
+RoxygenNote: 7.1.1
+VignetteBuilder: knitr

@@ -1,0 +1,251 @@
+---
+title: "Gaussian Mixtures"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+pkgs = c("tidyverse","plotly", "shiny", "flexdashboard")
+void = lapply(pkgs, library, character.only = TRUE)
+```
+
+
+
+Inputs {.sidebar}
+==========================================================
+
+```{r}
+# sliderInput("eps", label = h3("Small epsilon to avoid singularities"), 
+# min = 0, max = 0.2, value = 0.1)
+```
+
+
+```{r}
+sliderInput("p", label = h3("Mixing probability p:"), 
+min = 0, max = 1, value = 0.5)
+```
+
+```{r}
+sliderInput("radius", label = h3("Radius: "), 
+min = 0, max = 1, value = 0.5)
+
+   sliderInput("angle", label = h3("Angle:"), 
+min = 0, max = pi/2, value = pi/4)
+```
+
+```{r}
+n_gridpoints = 100
+eps = 0.1
+tt <- expand_grid(angle = seq(eps, 1-eps, length.out = n_gridpoints),
+                  radius = seq(eps, 1-eps, length.out = n_gridpoints),
+                  p = c(0.5, seq(eps, 1-eps, length.out = n_gridpoints))) %>% 
+  mutate(mu1 = sqrt((1-p)/p) * radius * sin(angle*pi/2),
+         mu2 = -sqrt(p/(1-p)) * radius * sin(angle*pi/2),
+         sigma1 = sqrt(1/p) * radius * cos(angle*pi/2),
+         sigma2 = sqrt(1/(1-p) * (1-radius^2))) %>% 
+  mutate(cumu3 = p * (mu1^3 + 3*mu1*sigma1^2) + (1-p) * (mu2^3 + 3*mu2*sigma2^2),
+         cumu4 = p * (mu1^4 + 6*mu1^2*sigma1^2 + 3*sigma1^4) + (1-p) * (mu2^4 + 6*mu2^2*sigma2^2 + 3*sigma2^4) - 3)
+```
+
+Histograms
+==================
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Histogram
+
+<!--
+> The red lines visualize the mean 0 and standard deviation of one of the Gaussian mixture.
+> The blue and green solid lines denote the mean of the two summands.
+-->
+
+```{r}
+renderPlot({
+  dd = bmixture::rmixnorm(n = 10000, 
+                          weight = c(input$p, 1 - input$p), 
+                          mean = c(sqrt((1-input$p)/input$p) * input$radius * sin(input$angle), 
+                                   -sqrt((1-input$p)/input$p) * input$radius * sin(input$angle)),
+                          sd = c(sqrt(1/input$p) * input$radius * cos(input$angle),
+                                 sqrt(1/(1-input$p) * (1-input$radius^2))))
+  
+  mu1 = sqrt((1-input$p)/input$p) * input$radius * sin(input$angle)
+  mu2 = -sqrt(input$p/(1-input$p)) * input$radius * sin(input$angle)
+  sigma1 = sqrt(1/input$p) * input$radius * cos(input$angle)
+  sigma2 = sqrt(1/(1-input$p) * (1-input$radius^2))
+
+  
+  ggplot(NULL, aes(x = dd)) + geom_histogram() + 
+        geom_vline(xintercept = 0, size = 3, color = "red") + geom_vline(xintercept = 1, size = 2, color = "red", linetype = 2) + geom_vline(xintercept = -1, size = 2, color = "red", linetype = 2) +
+    geom_vline(xintercept = mu1, size = 2, color = "blue") + geom_vline(xintercept = mu1 + sigma1, size = 1, color = "blue", linetype = 2) + geom_vline(xintercept = mu1 - sigma1, size = 1, color = "blue", linetype = 2) + 
+    geom_vline(xintercept = mu2, size = 2, color = "green") + geom_vline(xintercept = mu2 + sigma2, size = 1, color = "green", linetype = 2) + geom_vline(xintercept = mu2 - sigma2, size = 1, color = "green", linetype = 2) 
+    
+  
+  # hist(, 
+  #      freq = FALSE, 
+  #      breaks = 30, 
+  #      col = "gray" )
+})  
+```
+
+### Minima and Maxima of Third Cumulant (fixed p, across all angles and radii)
+
+```{r}
+plotly::renderPlotly({
+  plotly::ggplotly(
+    ggplot(tt %>% 
+             filter(p >= eps & p <= 1-eps) %>%
+             group_by(p) %>%
+             nest() %>%
+             mutate(cumu3_min = map_dbl(data, ~min(.x$cumu3))) %>%
+             mutate(cumu3_max = map_dbl(data, ~max(.x$cumu3))) %>%
+             mutate(cumu4_min = map_dbl(data, ~min(.x$cumu4))) %>%
+             mutate(cumu4_max = map_dbl(data, ~max(.x$cumu4))) %>%
+             ungroup() %>%
+             select(-data) %>%
+             pivot_longer(starts_with("cumu")),
+           aes(x = p, y = value, col = name)) + geom_line())})
+```
+
+
+
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### Details on Parametrisation
+
+
+The density of a Gaussian mixture is of the form
+$$
+p \cdot \frac{1}{\sqrt{2 \pi \sigma_1^2}} e^{-\frac{1}{2} \left( \frac{x-\mu_1}{\sigma_1} \right)^2} + 
+(1-p) \cdot \frac{1}{\sqrt{2 \pi \sigma_2^2}} e^{-\frac{1}{2} \left( \frac{x-\mu_2}{\sigma_2} \right)^2}
+$$
+
+Since $\left( r, \theta \right)$ represents $\sqrt{p} \sigma_2$ and $\sqrt{\frac{p}{1-p}} \mu_1$ in polar coordinates, we have that 
+$$
+\left(\mu_1, \sigma_1\right) = \left( \sqrt{\frac{1-p}{p}} \cdot r \cdot \sin(\theta) , \sqrt{\frac{1}{p}} \cdot r \cdot \cos(\theta)\right).
+$$
+Note that $\left(\mu_2, \sigma_2 \right)$ are a function of $\left(\mu_1, \sigma_1 \right)$ to ensure that $\mathbb{E}(X) = 0$ and $\mathbb{V}(X) = 1$. 
+We have 
+$$
+\left(\mu_2, \sigma_2 \right) = \left( -\frac{p}{1-p}\mu_1, \sqrt{ \frac{1}{1-p} \left[1 -\left(p \sigma_1^2 + \frac{p}{1-p}\mu_1^2\right)\right]} \right).
+$$
+
+Substituting for all relevant quantities in terms of $\left( p, r, \theta \right)$, we obtain that 
+$$
+\left(\theta, r, p \right) \mapsto 
+\begin{pmatrix}
+p \\
+\mu_1 \\
+\mu_2 \\
+\sigma_1 \\
+\sigma_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+p \\
+\sqrt{\frac{1-p}{p}} \cdot r \cdot \sin(\theta) \\
+-\sqrt{\frac{1-p}{p}} \cdot r \cdot \sin(\theta) \\
+\sqrt{\frac{1}{p}} \cdot r \cdot \cos(\theta) \\
+\sqrt{\frac{1}{1-p}} \cdot \sqrt{1-r^2}
+\end{pmatrix}
+$$
+<!-- $$ -->
+<!-- \left(\theta, r, p \right) \mapsto  -->
+<!-- \begin{pmatrix} -->
+<!-- p \\ -->
+<!-- \mu_1 \\ -->
+<!-- \mu_2 \\ -->
+<!-- \sigma_1 \\ -->
+<!-- \sigma_2 -->
+<!-- \end{pmatrix} -->
+<!-- = -->
+<!-- \begin{pmatrix} -->
+<!-- p \\ -->
+<!-- \sqrt{\frac{1-p}{p}} \cdot r \cdot \sin(\theta) \\ -->
+<!-- -\sqrt{\frac{1-p}{p}} \cdot r \cdot \sin(\theta) \\ -->
+<!-- \sqrt{\frac{1}{p}} \cdot r \cdot \cos(\theta) \\ -->
+<!-- \sqrt{\frac{1}{1-p}} \cdot \sqrt{1-r^2} -->
+<!-- \end{pmatrix} -->
+<!-- $$ -->
+
+The cumulants are calculated as 
+
+$$
+\kappa^{(3)} = p \cdot (\mu_1^3 + 3 \cdot \mu_1 \cdot \sigma_1^2) + (1-p) \cdot (\mu_2^3 + 3 \cdot \mu_2 \cdot \sigma_2^2)
+$$
+and
+
+$$
+\kappa^{(4)} = p  \cdot  (\mu_1^4 + 6 \cdot \mu_1^2 \cdot \sigma_1^2 + 3 \cdot \sigma_1^4) + (1-p)  \cdot  (\mu_2^4 + 6 \cdot \mu_2^2 \cdot \sigma_2^2 + 3 \cdot \sigma_2^4) - 3
+$$
+
+Column {data-width=100}
+-----------------------------------------------------------------------
+
+### Value of $p$
+
+```{r}
+renderValueBox({
+  valueBox(value = round(input$p, 4))
+})
+```
+
+### Value of $\mu_1$ and $\mu_2$
+
+```{r}
+renderValueBox({
+  valueBox(value = round(sqrt((1-input$p)/input$p) * input$radius * sin(input$angle), 4))
+})
+
+renderValueBox({
+  valueBox(value = round(-sqrt(input$p/(1-input$p)) * input$radius * sin(input$angle), 4))
+})
+```
+
+### Value of $\sigma_1$ and $\sigma_2$
+
+```{r}
+renderValueBox({
+  valueBox(value = round(sqrt(1/input$p) * input$radius * cos(input$angle), 4))
+})
+
+renderValueBox({
+  valueBox(value = round(sqrt(1/(1-input$p) * (1-input$radius^2)), 4))
+})
+```
+
+### Value of $\kappa^{(3)}$ and $\kappa^{(4)}$
+
+```{r}
+renderValueBox({
+  mu1 = sqrt((1-input$p)/input$p) * input$radius * sin(input$angle)
+  mu2 = -sqrt(input$p/(1-input$p)) * input$radius * sin(input$angle)
+  sigma1 = sqrt(1/input$p) * input$radius * cos(input$angle)
+  sigma2 = sqrt(1/(1-input$p) * (1-input$radius^2))
+
+  valueBox(value = round(input$p * (mu1^3 + 3*mu1*sigma1^2) + (1-input$p) * (mu2^3 + 3*mu2*sigma2^2), 
+                         4)
+           )
+})
+```
+
+```{r}
+renderValueBox({
+  mu1 = sqrt((1-input$p)/input$p) * input$radius * sin(input$angle)
+  mu2 = -sqrt(input$p/(1-input$p)) * input$radius * sin(input$angle)
+  sigma1 = sqrt(1/input$p) * input$radius * cos(input$angle)
+  sigma2 = sqrt(1/(1-input$p) * (1-input$radius^2))
+
+  valueBox(value = round(input$p * (mu1^4 + 6*mu1^2*sigma1^2 + 3*sigma1^4) + (1-input$p) * (mu2^4 + 6*mu2^2*sigma2^2 + 3*sigma2^4) - 3, 
+                         4)
+           )
+  })
+```
+
+
+

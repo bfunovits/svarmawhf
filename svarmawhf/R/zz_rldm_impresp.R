@@ -1,0 +1,189 @@
+# impresp stuff
+
+# impresp_methods.R ######################################
+# defines the main methods for the 'impresp' class
+
+#' Impulse Response Function
+#'
+#' This function was originally part of the R-package \strong{RLDM}.
+#' \cr
+#' Compute the (orthogonalized) impulse response function of a VARMA model or
+#' a statespace model. The impulse response coefficients are also called
+#' \emph{Power series parameters} of the system.
+#'
+#' The impulse response coefficients \eqn{(k_j \,|\, j \geq 0)}{(k[j], j \ge 0)}
+#' define the map between the noise and the output process. If the model is stable then
+#' the stationary solution of the ARMA system, respectively statespace system, is given by
+#' \deqn{
+#' y_t = \sum_{j \geq 0} k_j u_{t-j}.
+#' }{
+#' y[t] = sum_{j \ge 0} k[j] u[t-j].
+#' }
+#' For a statespace system the impulse response coefficients
+#' are
+#' \deqn{k_0 = D \mbox{ and }}{k[0] = D and}
+#' \deqn{k_j = CA^{j-1}B \mbox{ for }j >0.}{k[j] = CA^{j-1}B for j>0.}
+#' For an ARMA model the coefficients are (recursively) computed
+#' by a comparison of coefficients in the equation
+#' \deqn{
+#' (a_0 + a_1 z + \cdots + a_p z^p)(k_0 + k_1 z + k_2 z^2 + \cdots ) = b_0 + b_1 z + \cdots + b_q z^q
+#' }{
+#' (a[0] + a[1] z + \dots + a[p] z^p)(k[0] + k[1] z + k[2] z^2 + \dots ) = b[0] + b[1] z + \dots + b[q] z^q
+#' }
+#'
+#' The S3 methods \code{impresp.*} compute the coefficients \eqn{k_j}{k[j]} for
+#' \eqn{j = 0,\cdots,N}{j = 0,\dots,N} and store the result, together with the left square root
+#' (\code{sigma_L}) of the noise covariance \eqn{\Sigma}, in a \strong{impresp} object.
+#' \code{impresp} objects contain the complete information
+#' about the underlying model, provided that the maximum lag \eqn{N} is large enough.
+#' This means that one may reconstruct the underlying model from an impulse response object.
+#'
+#' @param obj \code{\link{armamod}}  object.
+#'            The last case may be used to transform the impulse response function to
+#'            a different orthogonalization scheme.
+#' @param lag.max Maximum lag of the impulse response coefficients. This parameter is ignored in
+#'                the case that \code{obj} is an impresp object.
+#' @param H An (n x n) (non singular) matrix which specifies a transformation of the noise.
+#'   The noise \eqn{u_t}{u[n]} is transformed to \eqn{H^{-1}u_t}{H^{-1}u[t]} and
+#'   the impulse response coefficients (\eqn{k_j \rightarrow k_j H}{k[j] -> k[j] H}) and the (left)
+#'   square root of the noise covariance matrix (\eqn{L \rightarrow H^{-1}L}{L -> H^{-1}L}) are
+#'   transformed correspondingly.
+#'   \cr
+#'   The default case \code{H=NULL} corresponds to the identity matrix (i.e. no transformation).
+#'   \cr
+#'   For \code{H='chol'}, the transformation matrix \code{H = t(chol(Sigma))}
+#'   is determined from the Choleski decomposition of the noise covariance \eqn{\Sigma}.
+#'   For \code{H='eigen'} the symmetric square root of
+#'   \eqn{\Sigma} (obtained from the the eigenvalue decomposition of \eqn{\Sigma})
+#'   is used. For \code{H='sigma_L'} the left square root of the noise covariance,
+#'   which is stored in the object \code{obj}, is used. In these cases
+#'   one obtains an \emph{orthogonalized} impulse response function.
+#'   Other orthogonalization schemes may be obtained by setting \eqn{H} to a
+#'   suitable square root of \eqn{\Sigma}.
+#'
+#' @return \code{impresp} object, i.e. a list with components
+#' \item{irf}{\code{pseries} object.}
+#' \item{sigma_L}{(n,n)-dimensional matrix which contains left square of noise covariance matrix.}
+#' \item{names}{(n)-dimensional character vector or NULL}
+#' \item{label}{character string or NULL}
+#' 
+#' @export
+#' @examples 
+#' # IRF from VARMA model ################################################
+#' model = armamod(sys = test_lmfd(dim = c(2,2), degrees = c(2,1)))
+#'
+#' irf = impresp(model)
+#' print(irf, digits = 2, format = 'iz|j')
+impresp = function(obj, lag.max, H) {
+  UseMethod("impresp", obj)
+}
+
+# internal helper function which computes the transformation matrix "H"
+make_H = function(type = c('chol','eigen','sigma_L'), sigma_L) {
+  n = nrow(sigma_L)
+  type = match.arg(type)
+  
+  # H = sigma_L
+  if ( type == 'sigma_L' ) {
+    H = sigma_L
+  }
+  
+  # cholesky decomposition
+  if ( type == 'chol' ) {
+    sigma = sigma_L %*% t(sigma_L)
+    H = t(chol(sigma))
+  }
+  
+  # eigenvalue decomposition
+  if ( type == 'eigen' ) {
+    sigma = sigma_L %*% t(sigma_L)
+    ed = eigen(sigma, symmetric = TRUE)
+    H = ed$vectors %*% diag(x = sqrt(ed$values), nrow = n) %*% t(ed$vectors)
+  }
+  
+  return(H)
+}
+
+
+#' @rdname impresp
+#' @export
+impresp.armamod = function(obj, lag.max = 12, H = NULL) {
+  
+  lag.max = as.integer(lag.max)[1]
+  if (lag.max < 0) {
+    stop('lag.max must be a non-negative integer.')
+  }
+  
+  sys = obj$sys
+  sigma_L = obj$sigma_L
+  
+  irf = pseries(sys, lag.max = lag.max)
+  
+  # Compute orthogonalized IRF #
+  if ((!is.null(H)) && (nrow(sigma_L) > 0)) {
+    if (is.character(H)) {
+      H = make_H(H, sigma_L)
+    }
+    if ( (!is.numeric(H)) || (!is.matrix(H)) || (any(dim(H) != nrow(sigma_L))) ) {
+      stop('H must be a numeric matrix of the same dimension as the noise.')
+    }
+    irf = irf %r% H
+    sigma_L = solve(H, sigma_L)
+  }
+  
+  out = structure(list(irf = irf, sigma_L = sigma_L, names = obj$names, label = obj$label),
+                  class = c('impresp','rldm'))
+  
+  return(out)
+}
+
+
+#' @rdname impresp
+#' @export
+impresp.impresp = function(obj, lag.max = NULL, H = NULL) {
+  # code is almost identical to the code of 'impresp.armamod #
+  
+  sigma_L = obj$sigma_L
+  irf = obj$irf
+  
+  # Compute orthogonalized IRF #
+  if ((!is.null(H)) && (nrow(sigma_L) > 0)) {
+    if (is.character(H)) {
+      H = make_H(H, sigma_L)
+    }
+    if ( (!is.numeric(H)) || (!is.matrix(H)) || (any(dim(H) != nrow(sigma_L))) ) {
+      stop('H must be a numeric matrix of the same dimension as the noise.')
+    }
+    irf = irf %r% H
+    sigma_L = solve(H, sigma_L)
+  }
+  
+  out = structure(list(irf = irf, sigma_L = sigma_L, names = obj$names, label = obj$label),
+                  class = c('impresp','rldm'))
+  
+  return(out)
+}
+
+# str ####
+
+#' @rdname str
+#' @name str methods
+#' @export
+str.impresp = function(object, ...) {
+  d = dim(object$irf)
+  orth = FALSE
+  if (d[2] > 0) {
+    sigma = object$sigma_L
+    sigma = sigma %*% t(sigma)
+    orth = isTRUE(all.equal(sigma, diag(d[2])))
+  }
+  if (orth) {
+    cat('Orthogonalized impulse response [',d[1],',',d[2],'] with ', d[3], ' lags\n', sep = '')
+  } else {
+    cat('Impulse response [',d[1],',',d[2],'] with ', d[3], ' lags\n', sep = '')
+  }
+  return(invisible(NULL))
+}
+
+
+
