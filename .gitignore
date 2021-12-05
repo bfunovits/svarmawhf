@@ -1,0 +1,13 @@
+.RData
+.Rhistory
+.Rproj.user
+#*.rds
+#*.csv
+#*.xls
+.DS_Store
+#*.pdf
+#*.html
+#*.eps
+*.Rcheck*
+*.tar.gz
+#*.Rd
