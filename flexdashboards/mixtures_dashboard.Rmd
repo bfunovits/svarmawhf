@@ -8,8 +8,10 @@ runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
-pkgs = c("tidyverse","plotly", "shiny", "flexdashboard")
-void = lapply(pkgs, library, character.only = TRUE)
+library(tidyverse)
+library(plotly)
+library(shiny)
+library(flexdashboard)
 ```
 
 
@@ -58,10 +60,7 @@ Column {data-width=500}
 
 ### Histogram
 
-<!--
-> The red lines visualize the mean 0 and standard deviation of one of the Gaussian mixture.
-> The blue and green solid lines denote the mean of the two summands.
--->
+
 
 ```{r}
 renderPlot({
@@ -116,7 +115,12 @@ plotly::renderPlotly({
 Column {data-width=400}
 -----------------------------------------------------------------------
 
-### Details on Parametrisation
+
+
+### Explanation
+
+The red lines visualize the mean (equal to zero) and standard deviation (equal to one) of the Gaussian mixture.
+The blue and green lines do the same for the two summands.
 
 
 The density of a Gaussian mixture is of the form
@@ -183,6 +187,7 @@ and
 $$
 \kappa^{(4)} = p  \cdot  (\mu_1^4 + 6 \cdot \mu_1^2 \cdot \sigma_1^2 + 3 \cdot \sigma_1^4) + (1-p)  \cdot  (\mu_2^4 + 6 \cdot \mu_2^2 \cdot \sigma_2^2 + 3 \cdot \sigma_2^4) - 3
 $$
+
 
 Column {data-width=100}
 -----------------------------------------------------------------------

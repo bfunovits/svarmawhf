@@ -7,8 +7,10 @@ runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
-pkgs = c("tidyverse","plotly", "shiny", "flexdashboard")
-void = lapply(pkgs, library, character.only = TRUE)
+library(tidyverse)
+library(plotly)
+library(shiny)
+library(flexdashboard)
 
 sgt_skewness = function(l, p, q){
   v = q^(-1/p) *

@@ -95,4 +95,5 @@ Finally, we provide the results, i.e. each part of the parameter estimates toget
 # Specials
 
 In order to investigate the [SGT distributions](./flexdashboards/sgt_dashboard.Rmd) and [Gaussian mixtures](./flexdashboards/mixtures_dashboard.Rmd), we have created two dashboards in the subdirectory **flexdashboards**.
+They may also be directly accessed via the links [https://funber.shinyapps.io/sgt_dashboard/](https://funber.shinyapps.io/sgt_dashboard/) and [https://funber.shinyapps.io/mixtures_dashboard/](https://funber.shinyapps.io/mixtures_dashboard/)
 
